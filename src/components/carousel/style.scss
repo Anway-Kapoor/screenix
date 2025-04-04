@@ -1,4 +1,4 @@
-@import "../../mixins.scss";
+@use "../../mixins" as *;
 .carousel {
     margin-bottom: 50px;
     .contentWrapper {
@@ -29,9 +29,23 @@
     }
     .carouselLeftNav {
         left: 30px;
+        flex-shrink: 0;
+        @include md {
+            // your md styles
+        }
+        @include lg {
+            // your lg styles
+        }
     }
     .carouselRightNav {
         right: 30px;
+        flex-shrink: 0;
+        @include md {
+            // your md styles
+        }
+        @include lg {
+            // your lg styles
+        }
     }
     .loadingSkeleton {
         display: flex;

@@ -2,7 +2,10 @@ import React, { useState, useEffect } from "react";
 import { HiOutlineSearch } from "react-icons/hi";
 import { SlMenu } from "react-icons/sl";
 import { VscChromeClose } from "react-icons/vsc";
-import { useNavigate, useLocation } from "react-router-dom";
+import { useNavigate, useLocation, Link } from "react-router-dom";
+import { useAuth } from "../../store/authContext";
+import { signOut } from "firebase/auth";
+import { auth } from "../../firebase/firebase";
 
 import "./style.scss";
 
@@ -17,10 +20,20 @@ const Header = () => {
   const [showSearch, setShowSearch] = useState("");
   const navigate = useNavigate();
   const location = useLocation();
+  const { currentUser } = useAuth();
 
   useEffect(() => {
     window.scrollTo(0, 0);
   }, [location])
+
+  const handleLogout = async () => {
+    try {
+      await signOut(auth);
+      navigate('/');
+    } catch (error) {
+      console.error("Error signing out: ", error);
+    }
+  };
 
   const controlNavbar = () => {
     // console.log(window.scrollY);
@@ -86,6 +99,20 @@ const Header = () => {
           <li className="menuItem">
             <HiOutlineSearch onClick={openSearch}/>
           </li>
+          {!currentUser ? (
+            <>
+              <li className="menuItem">
+                <Link to="/login" className="auth-link">Login</Link>
+              </li>
+              <li className="menuItem">
+                <Link to="/signup" className="auth-link signup-btn">Sign Up</Link>
+              </li>
+            </>
+          ) : (
+            <li className="menuItem">
+              <button onClick={handleLogout} className="logout-btn">Logout</button>
+            </li>
+          )}
         </ul>
 
         <div className="mobileMenuItems">

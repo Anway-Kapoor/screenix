@@ -1,23 +1,30 @@
+// Breakpoints
+$sm: 480px;
+$md: 768px;
+$lg: 1024px;
+$xl: 1280px;
+
+// Mixins for media queries
 @mixin sm {
-    @media only screen and (min-width: 640px) {
+    @media only screen and (min-width: $sm) {
         @content;
     }
 }
 
 @mixin md {
-    @media only screen and (min-width: 768px) {
+    @media only screen and (min-width: $md) {
         @content;
     }
 }
 
 @mixin lg {
-    @media only screen and (min-width: 1024px) {
+    @media only screen and (min-width: $lg) {
         @content;
     }
 }
 
 @mixin xl {
-    @media only screen and (min-width: 1280px) {
+    @media only screen and (min-width: $xl) {
         @content;
     }
 }

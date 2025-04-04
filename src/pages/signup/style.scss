@@ -1,0 +1,131 @@
+// Variables
+$dark-blue: #1a2238;
+$orange: #ff6b6b;
+$orange-hover: #ff8787;
+$text-light: #f8f9fa;
+$input-bg: #2a3348;
+$error-color: #ff4646;
+
+// Global styles
+body {
+  background: $dark-blue;
+  color: $text-light;
+  min-height: 100vh;
+  font-family: 'Arial', sans-serif;
+}
+
+// Form styles
+.signup-container, .login-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  padding: 20px;
+  background: var(--black);
+
+  .signup-form, .login-form {
+    width: 100%;
+    max-width: 400px;
+    padding: 2rem;
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+
+    h2 {
+      text-align: center;
+      margin-bottom: 2rem;
+      color: var(--orange);
+      font-size: 1.8rem;
+    }
+
+    .form-group {
+      margin-bottom: 1.5rem;
+
+      label {
+        display: block;
+        margin-bottom: 0.5rem;
+        color: var(--text-light);
+        font-weight: 500;
+      }
+
+      input {
+        width: 100%;
+        padding: 0.75rem;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 4px;
+        background: var(--input-bg);
+        color: var(--text-light);
+        font-size: 1rem;
+        transition: border-color 0.3s ease;
+
+        &:focus {
+          outline: none;
+          border-color: var(--orange);
+        }
+      }
+    }
+
+    .error {
+      color: var(--error-color);
+      margin-bottom: 1rem;
+      text-align: center;
+      font-size: 0.9rem;
+    }
+
+    .submit-button {
+      width: 100%;
+      padding: 0.75rem;
+      background: var(--gradient);
+      color: white;
+      border: none;
+      border-radius: 4px;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: opacity 0.3s ease;
+
+      &:disabled {
+        opacity: 0.7;
+        cursor: not-allowed;
+      }
+
+      &:hover:not(:disabled) {
+        opacity: 0.9;
+      }
+    }
+
+    .toggle-form {
+      margin-top: 1.5rem;
+      text-align: center;
+      color: var(--text-light);
+
+      a {
+        color: var(--orange);
+        text-decoration: none;
+        font-weight: 600;
+        margin-left: 0.5rem;
+
+        &:hover {
+          text-decoration: underline;
+        }
+      }
+    }
+  }
+}
+
+// Animation for form appearance
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.signup_form, .login_form {
+  animation: fadeIn 0.3s ease-out;
+}

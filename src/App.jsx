@@ -3,6 +3,8 @@ import { BrowserRouter, createBrowserRouter, Route, Routes } from 'react-router-
 import { fetchDataFromApi } from './utils/api'
 import { useSelector, useDispatch } from 'react-redux';
 import { getApiConfiguration, getGenres } from './store/homeSlice';
+import Login from './pages/login/Login';
+import Signup from './pages/signup/Signup';
 import Header from "./components/header/Header"
 import Footer from "./components/footer/Footer"
 import PageNotFound from "./pages/404/PageNotFound"
@@ -10,6 +12,7 @@ import Explore from "./pages/explore/Explore"
 import Details from "./pages/details/Details"
 import {Home} from "./pages/home/Home"
 import SearchResult from "./pages/searchResult/SearchResult"
+import { AuthProvider } from './store/authContext';
 
 function App() {
    
@@ -54,17 +57,21 @@ function App() {
   }
 
   return (
-    <BrowserRouter>
-    <Header />
-    <Routes>
-      <Route path='/' element={<Home />}/>
-      <Route path='/:mediaType/:id' element={<Details />}/>
-      <Route path='/explore/:mediaType' element={<Explore />}/>
-      <Route path='/search/:query' element={<SearchResult />}/>
-      <Route path='*' element={<PageNotFound />}/>
-    </Routes>
-    <Footer />
-    </BrowserRouter>
+    <AuthProvider>
+      <BrowserRouter>
+        <Header />
+        <Routes>
+          <Route path='/' element={<Home />}/>
+          <Route path='/login' element={<Login />}/>
+          <Route path='/signup' element={<Signup />}/>
+          <Route path='/:mediaType/:id' element={<Details />}/>
+          <Route path='/explore/:mediaType' element={<Explore />}/>
+          <Route path='/search/:query' element={<SearchResult />}/>
+          <Route path='*' element={<PageNotFound />}/>
+        </Routes>
+        <Footer />
+      </BrowserRouter>
+    </AuthProvider>
   )
 }
 
