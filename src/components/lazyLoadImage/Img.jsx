@@ -9,6 +9,8 @@ const Img = ({ src, className }) => {
             alt=""
             effect="blur"
             src={src}
+            threshold={500}
+            placeholderSrc="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII="
         />
     );
 };

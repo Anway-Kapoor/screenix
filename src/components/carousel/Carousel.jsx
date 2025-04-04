@@ -36,12 +36,10 @@ function Carousel({data, loading, endpoint, title}) {
   const skItem = () => {
     return (
         <div className="skeletonItem">
-            <div className="posterBlock skeleton">
-                <div className="textBlock">
-                    <div className="title skeleton">
-                        <div className="date skeleton"></div>
-                    </div>
-                </div>
+            <div className="posterBlock skeleton"></div>
+            <div className="textBlock">
+                <div className="title skeleton"></div>
+                <div className="date skeleton"></div>
             </div>
         </div>
     )
