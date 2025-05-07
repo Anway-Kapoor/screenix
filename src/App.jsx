@@ -1,7 +1,7 @@
-import { useState, useEffect } from 'react'
-import { BrowserRouter, createBrowserRouter, Route, Routes } from 'react-router-dom';
+import { useEffect } from 'react'
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { fetchDataFromApi } from './utils/api'
-import { useSelector, useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { getApiConfiguration, getGenres } from './store/homeSlice';
 import Login from './pages/login/Login';
 import Signup from './pages/signup/Signup';
@@ -13,11 +13,12 @@ import Details from "./pages/details/Details"
 import {Home} from "./pages/home/Home"
 import SearchResult from "./pages/searchResult/SearchResult"
 import { AuthProvider } from './store/authContext';
+import ProtectedRoute from './components/protectedRoute/ProtectedRoute';
 
 function App() {
    
   const dispatch = useDispatch();
-  const {url} = useSelector((state) => state.home);
+  // const {url} = useSelector((state) => state.home);
 
   useEffect(() => {
     fetchApiConfig();
@@ -64,8 +65,16 @@ function App() {
           <Route path='/' element={<Home />}/>
           <Route path='/login' element={<Login />}/>
           <Route path='/signup' element={<Signup />}/>
-          <Route path='/:mediaType/:id' element={<Details />}/>
-          <Route path='/explore/:mediaType' element={<Explore />}/>
+          <Route path='/:mediaType/:id' element={
+            <ProtectedRoute>
+              <Details />
+            </ProtectedRoute>
+          }/>
+          <Route path='/explore/:mediaType' element={
+            <ProtectedRoute>
+              <Explore />
+            </ProtectedRoute>
+          }/>
           <Route path='/search/:query' element={<SearchResult />}/>
           <Route path='*' element={<PageNotFound />}/>
         </Routes>

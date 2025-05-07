@@ -1,4 +1,3 @@
-import React from 'react'
 import "./style.scss"
 import { HeroBanner } from './heroBannner/HeroBanner'
 import Trending from './trending/Trending'
